@@ -1,12 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FullStack Coursework</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    
-</body>
+
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="queries.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 
+    - preload banner  TODO:Add #1 a Preloading Banner
+  --></head>
+
+  <body id="top">
+    <!-- 
+    - #HEADER
+  -->
+
+    <header class="header" data-header>
+      <div class="container">
+        <div class="overlay" data-overlay></div>
+
+        <a href="#" class="logo">
+          <img />
+        </a>
+
+        <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <nav class="navbar" data-navbar>
+          <button
+            class="nav-close-btn"
+            data-nav-close-btn
+            aria-label="Close Menu"
+          >
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+
+          <a href="#" class="logo">
+            <img />
+          </a>
+
+          <ul class="navbar-list">
+            <li class="navbar-item">
+              <a href="#" class="navbar-link">Home</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#" class="navbar-link">Lessons</a>
+            </li>
+          </ul>
+
+          <ul class="nav-action-list">
+            <li>
+              <button class="nav-action-btn">
+                <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+
+                <span class="nav-action-text">Search</span>
+              </button>
+            </li>
+
+            <li>
+              <button class="nav-action-btn">
+                <ion-icon name="bag-outline" aria-hidden="true"></ion-icon>
+
+                <data class="nav-action-text">Shopping Cart </data>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <article>
+        <!-- 
+        - #HERO
+      -->
+
+        <section
+          class="section hero"
+          style="background-image: url('hero4.jpg')"
+        >
+          <div class="container">
+            <h2 class="h1 hero-title">
+              Coursework <strong>Lessons for Sale</strong>
+            </h2>
+
+            <p class="hero-text">
+              Find Your Path to Knowledge: Purchase a Wide Range of Subjects and
+              Lessons Tailored for Your Growth - Anytime, Anywhere!
+            </p>
+
+            <button class="btn btn-primary">
+              <span>Buy Now</span>
+
+              <ion-icon
+                name="arrow-forward-outline"
+                aria-hidden="true"
+              ></ion-icon>
+            </button>
+          </div>
+        </section>
+
+        <!-- 
+        - #LESSONS
+      -->
+
+        <section class="section product">
+          <div class="container">
+            <h2 class="h2 section-title">Lesson Collections</h2>
+
+            <ul class="filter-list">
+              <li>
+                <button class="filter-btn active">All</button>
+              </li>
+
+              <li>
+                <button class="filter-btn">Subject</button>
+              </li>
+
+              <li>
+                <button class="filter-btn">Location</button>
+              </li>
+
+              <li>
+                <button class="filter-btn">Price</button>
+              </li>
+
+              <li>
+                <button class="filter-btn">Spaces</button>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="cards">
+            <a href="#"><img src="maths.jpg" alt="Mathematics" /></a>
+            <p>Subject: Maths</p>
+            <p>Location: London</p>
+            <p>Price: $100</p>
+            <p>Space: 5</p>
+            <a href="#" class="cta">
+              <p>Add to Cart</p>
+            </a>
+          </div>
+          <div class="cards">
+            <a href="#"><img src="english.jpg" alt="English" /></a>
+            <p>Subject: English</p>
+            <p>Location: London</p>
+            <p>Price: $100</p>
+            <p>Space: 5</p>
+            <a href="#" class="cta">
+              <p>Add to Cart</p>
+            </a>
+          </div>
+          <div class="cards">
+            <a href="#"><img src="biology.jpg" alt="Biology" /></a>
+            <p>Subject: Biology</p>
+            <p>Location: London</p>
+            <p>Price: $100</p>
+            <p>Space: 5</p>
+            <a href="#" class="cta">
+              <p>Add to Cart</p>
+            </a>
+          </div>
+          <div class="cards">
+            <a href="#"><img src="chemistry.jpg" alt="Chemistry" /></a>
+            <p>Subject: Chemistry</p>
+            <p>Location: London</p>
+            <p>Price: $100</p>
+            <p>Space: 5</p>
+            <a href="#" class="cta">
+              <p>Add to Cart</p>
+            </a>
+          </div>
+          <div class="cards">
+            <a href="#"><img src="music.jpg" alt="Music" /></a>
+            <p>Subject: Music</p>
+            <p>Location: London</p>
+            <p>Price: $100</p>
+            <p>Space: 5</p>
+            <a href="#" class="cta">
+              <p>Add to Cart</p>
+            </a>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <!-- 
+    - custom js link
+  -->
+    <script src="sgcccript.js"></script>
+
+    <!-- 
+    - ionicon link
+  -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>
