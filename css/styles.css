@@ -524,7 +524,7 @@ a {
   width: 300px;
   background: #2f3740;
   padding: 1.125em;
-  border-radius: 1em;
+  border-radius: 1em; 
 }
 
 .cards p{
@@ -559,3 +559,12 @@ a.cta p {
 }
 
 
+section.card{
+  display: flex;
+  gap: 2rem;
+  padding: 0 20px;
+  flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center;
+    
+}
