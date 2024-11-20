@@ -6,181 +6,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FullStack Coursework</title>
 
-    <!-- Favicon -->
     <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
-
-    <!-- CSS Styles -->
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/queries.css" />
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Vue.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-    <!-- Ionicons for icons -->
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-  </head>
+    <!-- 
+    - preload banner  TODO:Add #1 a Preloading Banner
+  --></head>
+
   <body id="top">
-    <!-- HEADER -->
-    <header class="header" data-header>
-      <div class="container">
-        <div class="overlay" data-overlay></div>
-
-        <!-- Logo -->
-        <a href="#" class="logo">
-          <img src="images/logo.svg" alt="Logo" />
-        </a>
-
-        <!-- Mobile Menu Toggle -->
-        <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
-          <ion-icon name="menu-outline"></ion-icon>
-        </button>
-
-        <!-- Navigation Bar -->
-        <nav class="navbar" data-navbar>
-          <button
-            class="nav-close-btn"
-            data-nav-close-btn
-            aria-label="Close Menu"
-          >
-            <ion-icon name="close-outline"></ion-icon>
-          </button>
-
-          <!-- Logo in Navbar -->
+    <!-- Vue.js Root Container -->
+    <div id="app">
+      <!-- Header -->
+      <header class="header" data-header>
+        <div class="container">
+          <div class="overlay" data-overlay></div>
           <a href="#" class="logo">
-            <img src="images/logo.svg" alt="Logo" />
+            <img />
           </a>
-
-          <!-- Navbar Links -->
-          <ul class="navbar-list">
-            <li class="navbar-item">
-              <a href="#" class="navbar-link">Home</a>
-            </li>
-            <li class="navbar-item">
-              <a href="#lessons" class="navbar-link">Lessons</a>
-            </li>
-          </ul>
-
-          <!-- Navbar Actions -->
-          <ul class="nav-action-list">
-            <li>
-              <button class="nav-action-btn">
-                <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
-                <span class="nav-action-text">Search</span>
-              </button>
-            </li>
-            <li>
-              <button class="nav-action-btn">
-                <ion-icon name="bag-outline" aria-hidden="true"></ion-icon>
-                <data class="nav-action-text">Shopping Cart</data>
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main>
-      <article>
-        <!-- HERO SECTION -->
-        <section
-          class="section hero"
-          style="background-image: url('images/hero4.jpg')"
-        >
-          <div class="container">
-            <h2 class="h1 hero-title">
-              Coursework <strong>Lessons for Sale</strong>
-            </h2>
-            <p class="hero-text">
-              Find Your Path to Knowledge: Purchase a Wide Range of Subjects and
-              Lessons Tailored for Your Growth - Anytime, Anywhere!
-            </p>
-            <button class="btn btn-primary">
-              <span>Buy Now</span>
-              <ion-icon
-                name="arrow-forward-outline"
-                aria-hidden="true"
-              ></ion-icon>
+          <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
+          <nav class="navbar" data-navbar>
+            <button
+              class="nav-close-btn"
+              data-nav-close-btn
+              aria-label="Close Menu"
+            >
+              <ion-icon name="close-outline"></ion-icon>
             </button>
-          </div>
-        </section>
-
-        <!-- LESSON COLLECTIONS SECTION -->
-        <section class="section product" id="lessons">
-          <div class="container">
-            <h2 class="h2 section-title">Lesson Collections</h2>
-            <ul class="filter-list">
-              <li><button class="filter-btn active">All</button></li>
-              <li><button class="filter-btn">Subject</button></li>
-              <li><button class="filter-btn">Location</button></li>
-              <li><button class="filter-btn">Price</button></li>
-              <li><button class="filter-btn">Spaces</button></li>
+  
+            <!-- Logo in Navbar -->
+            <a href="#" class="logo">
+              <img src="images/logo.svg" alt="Logo" />
+            </a>
+  
+            <!-- Navbar Links -->
+            <ul class="navbar-list">
+              <li class="navbar-item">
+                <a href="#" class="navbar-link">Home</a>
+              </li>
+              <li class="navbar-item">
+                <a href="#lessons" class="navbar-link">Lessons</a>
+              </li>
             </ul>
-          </div>
-        </section>
-
-        <!-- LESSON CARDS -->
-        <section class="card">
-          <div class="cards">
-            <a href="#"><img src="images/maths.jpg" alt="Mathematics" /></a>
-            <p>Subject: Maths</p>
-            <p>Location: London</p>
-            <p>Price: $100</p>
-            <p>Space: 5</p>
-            <a href="#" class="cta">
-              <p>Add to cart</p>
-            </a>
-          </div>
-          <div class="cards">
-            <a href="#"><img src="images/english.jpg" alt="English" /></a>
-            <p>Subject: English</p>
-            <p>Location: London</p>
-            <p>Price: $100</p>
-            <p>Space: 5</p>
-            <a href="#" class="cta">
-              <p>Add to cart</p>
-            </a>
-          </div>
-          <div class="cards">
-            <a href="#"><img src="images/biology.jpg" alt="Biology" /></a>
-            <p>Subject: Biology</p>
-            <p>Location: London</p>
-            <p>Price: $100</p>
-            <p>Space: 5</p>
-            <a href="#" class="cta">
-              <p>Add to cart</p>
-            </a>
-          </div>
-          <div class="cards">
-            <a href="#"><img src="images/music.jpg" alt="Music" /></a>
-            <p>Subject: Music</p>
-            <p>Location: London</p>
-            <p>Price: $100</p>
-            <p>Space: 5</p>
-            <a href="#" class="cta">
-              <p>Add to cart</p>
-            </a>
-          </div>
-        </section>
-      </article>
-    </main>
-
-    <!-- Custom JS -->
+  
+            <!-- Navbar Actions -->
+            <ul class="nav-action-list">
+              <li>
+                <button class="nav-action-btn">
+                  <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+                  <span class="nav-action-text">Search</span>
+                </button>
+              </li>
+              <li>
+                <button class="nav-action-btn">
+                  <ion-icon name="bag-outline" aria-hidden="true"></ion-icon>
+                  <data class="nav-action-text">Shopping Cart</data>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+  
+      <!-- Main Content -->
+      <main>
+        <article>
+          <!-- Hero Section -->
+          <section class="section hero" style="background-image: url('images/hero4.jpg')">
+            <div class="container">
+              <h2 class="h1 hero-title">
+                Coursework <strong>Lessons for Sale</strong>
+              </h2>
+              <p class="hero-text">
+                Find Your Path to Knowledge: Purchase a Wide Range of Subjects and
+                Lessons Tailored for Your Growth - Anytime, Anywhere!
+              </p>
+              <button class="btn btn-primary">
+                <span>Buy Now</span>
+                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+              </button>
+            </div>
+          </section>
+  
+          <!-- Lessons Section -->
+          <section class="section product">
+            <div class="container">
+              <h2 class="h2 section-title">Lesson Collections</h2>
+              <ul class="filter-list">
+                <li><button 
+                    class="filter-btn" 
+                    :class="{ active: activeFilter === 'all' }" 
+                    @click="setFilter('all')">All</button>
+                </li>
+                <li><button 
+                    class="filter-btn" 
+                    :class="{ active: activeFilter === 'subject' }" 
+                    @click="setFilter('subject')">Subject</button>
+                </li>
+                <li><button 
+                    class="filter-btn" 
+                    :class="{ active: activeFilter === 'location' }" 
+                    @click="setFilter('location')">Location</button>
+                </li>
+                <li><button 
+                    class="filter-btn" 
+                    :class="{ active: activeFilter === 'price' }" 
+                    @click="setFilter('price')">Price</button>
+                </li>
+                <li><button 
+                    class="filter-btn" 
+                    :class="{ active: activeFilter === 'spaces' }" 
+                    @click="setFilter('spaces')">Spaces</button>
+                </li>
+                <li><button 
+                    class="filter-btn" 
+                    :class="{ active: activeFilter === 'ascending' }" 
+                    @click="setSortOrder('ascending')">Ascending</button>
+                </li>
+                <li><button 
+                    class="filter-btn" 
+                    :class="{ active: activeFilter === 'descending' }" 
+                    @click="setSortOrder('descending')">Descending</button>
+                </li>
+              </ul>
+              
+            </div>
+          </section>
+  
+          <section class="card">
+            <div v-for="lesson in lessons" :key="lesson.subject" class="cards">
+              <img :src="lesson.image" :alt="lesson.subject" />
+              <p>Subject: {{ lesson.subject }}</p>
+              <p>Location: {{ lesson.location }}</p>
+              <p>Price: ${{ lesson.price }}</p>
+              <p>Spaces: {{ lesson.spaces }}</p>
+              <button class="cta" @click="addToCart(lesson)" :disabled="lesson.spaces <= 0">
+                Add to Cart
+              </button>
+            </div>
+          </section>
+        </article>
+      </main>
+    </div>
+    <!-- End Vue.js Root Container -->
+  
+    <!-- JavaScript and Other Scripts -->
     <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   </body>
+  
 </html>

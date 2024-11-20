@@ -17,6 +17,8 @@
         name: '',
         phone: '',
       },
+      activeFilter: 'all', 
+      sortOrder: 'ascending', 
     },
     methods: {
       addToCart(lesson) {
@@ -39,24 +41,32 @@
           alert('Invalid Name or Phone Number!');
         }
       },
-      filterLessons() {
-        const text = this.searchText.toLowerCase();
-        return this.lessons.filter(
-          (lesson) =>
-            lesson.subject.toLowerCase().includes(text) ||
-            lesson.location.toLowerCase().includes(text) ||
-            lesson.price.toString().includes(text) ||
-            lesson.spaces.toString().includes(text)
-        );
+    },
+    methods: {
+      setFilter(filter) {
+        this.activeFilter = filter;
+        this.applyFilter();
       },
-      sortLessons(key) {
-        this.sortKey = key;
-        this.sortOrder = -this.sortOrder;
-        this.lessons.sort((a, b) => {
-          const valueA = a[key];
-          const valueB = b[key];
-          return valueA < valueB ? -this.sortOrder : this.sortOrder;
-        });
+
+      setSortOrder(order) {
+        this.sortOrder = order;
+        this.applyFilter();
+      },
+
+      applyFilter() {
+        let filteredLessons = [...this.lessons];
+
+        if (this.activeFilter === 'price') {
+          filteredLessons.sort((a, b) => (this.sortOrder === 'ascending' ? a.price - b.price : b.price - a.price));
+        } else if (this.activeFilter === 'spaces') {
+          filteredLessons.sort((a, b) => (this.sortOrder === 'ascending' ? a.spaces - b.spaces : b.spaces - a.spaces));
+        } else if (this.activeFilter === 'location') {
+          filteredLessons.sort((a, b) => (this.sortOrder === 'ascending' ? a.location.localeCompare(b.location) : b.location.localeCompare(a.location)));
+        } else if (this.activeFilter === 'subject') {
+          filteredLessons.sort((a, b) => (this.sortOrder === 'ascending' ? a.subject.localeCompare(b.subject) : b.subject.localeCompare(a.subject)));
+        }
+
+        this.lessons = filteredLessons;
       },
     },
   });
