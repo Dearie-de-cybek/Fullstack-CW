@@ -24,6 +24,8 @@
   <body id="top">
     <!-- Vue.js Root Container -->
     <div id="app">
+    
+
       <!-- Header -->
       <header class="header" data-header>
         <div class="container">
@@ -69,8 +71,12 @@
               <li>
                 <button class="nav-action-btn">
                   <ion-icon name="bag-outline" aria-hidden="true"></ion-icon>
-                  <data class="nav-action-text">Shopping Cart</data>
+                  <span class="nav-action-text">Shopping Cart</span>
+                  <span v-if="cart.length > 0" class="cart-counter">{{ cart.length }}</span>
                 </button>
+              </li>
+              <li>
+                <button @click="navigateToCheckout" class="cart-button" :disabled="cart.length === 0">Checkout</button>
               </li>
             </ul>
           </nav>
@@ -154,6 +160,9 @@
               </button>
             </div>
           </section>
+
+         
+
         </article>
       </main>
     </div>
