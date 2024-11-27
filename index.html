@@ -63,10 +63,18 @@
             <!-- Navbar Actions -->
             <ul class="nav-action-list">
               <li>
-                <button class="nav-action-btn">
-                  <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
-                  <span class="nav-action-text">Search</span>
-                </button>
+                <div class="nav-action-search">
+                  <input
+                    type="text"
+                    class="search-input"
+                    placeholder="Search lessons..."
+                    v-model="searchText"
+                    @input="searchLessons"
+                  />
+                  <button class="search-button" @click="searchLessons">
+                    Search
+                  </button>
+                </div>
               </li>
               <li>
                 <button class="nav-action-btn">

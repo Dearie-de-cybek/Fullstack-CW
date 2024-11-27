@@ -1,5 +1,5 @@
 new Vue({
-  el: '#app', 
+  el: '#app',
   data: {
     lessons: [
       { subject: 'Maths', location: 'Hendon', price: 150, spaces: 5, image: 'images/maths.jpg' },
@@ -13,9 +13,10 @@ new Vue({
       { subject: 'Music', location: 'California', price: 290, spaces: 5, image: 'images/music.jpg' },
       { subject: 'Music', location: 'Texas', price: 100, spaces: 5, image: 'images/music.jpg' },
     ],
+    originalLessons: [],
     cart: [],
     showCart: false,
-    currentView: 'lessons', 
+    currentView: 'lessons',
     searchText: '',
     sortKey: '',
     sortOrder: 1,
@@ -23,8 +24,8 @@ new Vue({
       name: '',
       phone: '',
     },
-    activeFilter: 'all', 
-    sortOrder: 'ascending', 
+    activeFilter: 'all',
+    sortOrder: 'ascending',
   },
   computed: {
     totalCartPrice() {
@@ -52,10 +53,21 @@ new Vue({
         this.cart = [];
         this.form.name = '';
         this.form.phone = '';
-        this.showCart = false; 
+        this.showCart = false;
       } else {
         alert('Invalid Name or Phone Number!');
       }
+    },
+    searchLessons() {
+      const lowerCaseSearch = this.searchText.toLowerCase();
+      this.lessons = this.originalLessons.filter((lesson) => {
+        return (
+          lesson.subject.toLowerCase().includes(lowerCaseSearch) ||
+          lesson.location.toLowerCase().includes(lowerCaseSearch) ||
+          lesson.price.toString().includes(lowerCaseSearch) ||
+          lesson.spaces.toString().includes(lowerCaseSearch)
+        );
+      });
     },
     setFilter(filter) {
       this.activeFilter = filter;
@@ -69,51 +81,31 @@ new Vue({
       let filteredLessons = [...this.lessons];
 
       if (this.activeFilter === 'price') {
-        filteredLessons.sort((a, b) => (this.sortOrder === 'ascending' ? a.price - b.price : b.price - a.price));
+        filteredLessons.sort((a, b) =>
+          this.sortOrder === 'ascending' ? a.price - b.price : b.price - a.price
+        );
       } else if (this.activeFilter === 'spaces') {
-        filteredLessons.sort((a, b) => (this.sortOrder === 'ascending' ? a.spaces - b.spaces : b.spaces - a.spaces));
+        filteredLessons.sort((a, b) =>
+          this.sortOrder === 'ascending' ? a.spaces - b.spaces : b.spaces - a.spaces
+        );
       } else if (this.activeFilter === 'location') {
-        filteredLessons.sort((a, b) => (this.sortOrder === 'ascending' ? a.location.localeCompare(b.location) : b.location.localeCompare(a.location)));
+        filteredLessons.sort((a, b) =>
+          this.sortOrder === 'ascending'
+            ? a.location.localeCompare(b.location)
+            : b.location.localeCompare(a.location)
+        );
       } else if (this.activeFilter === 'subject') {
-        filteredLessons.sort((a, b) => (this.sortOrder === 'ascending' ? a.subject.localeCompare(b.subject) : b.subject.localeCompare(a.subject)));
+        filteredLessons.sort((a, b) =>
+          this.sortOrder === 'ascending'
+            ? a.subject.localeCompare(b.subject)
+            : b.subject.localeCompare(a.subject)
+        );
       }
 
       this.lessons = filteredLessons;
     },
   },
+  mounted() {
+    this.originalLessons = [...this.lessons];
+  },
 });
-
-
-
-
-
-// const overlay = document.querySelector("[data-overlay]");
-// const navOpenBtn = document.querySelector("[data-nav-open-btn]");
-// const navbar = document.querySelector("[data-navbar]");
-// const navCloseBtn = document.querySelector("[data-nav-close-btn]");
-
-// const navElems = [overlay, navOpenBtn, navCloseBtn];
-
-// for (let i = 0; i < navElems.length; i++) {
-//   navElems[i].addEventListener("click", function () {
-//     navbar.classList.toggle("active");
-//     overlay.classList.toggle("active");
-//   });
-// }
-
-
-
-
-
-// const header = document.querySelector("[data-header]");
-// const goTopBtn = document.querySelector("[data-go-top]");
-
-// window.addEventListener("scroll", function () {
-//   if (window.scrollY >= 80) {
-//     header.classList.add("active");
-//     goTopBtn.classList.add("active");
-//   } else {
-//     header.classList.remove("active");
-//     goTopBtn.classList.remove("active");
-//   }
-// });
