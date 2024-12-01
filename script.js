@@ -1,18 +1,6 @@
 new Vue({
   el: '#app',
   data: {
-    // lessons: [
-    //   { subject: 'Maths', location: 'Hendon', price: 150, spaces: 5, image: 'images/maths.jpg' },
-    //   { subject: 'English', location: 'London', price: 55, spaces: 5, image: 'images/english.jpg' },
-    //   { subject: 'Biology', location: 'Mauritius', price: 260, spaces: 5, image: 'images/biology.jpg' },
-    //   { subject: 'Chemistry', location: 'Dubai', price: 165, spaces: 5, image: 'images/chemistry.jpg' },
-    //   { subject: 'Music', location: 'Alaska', price: 270, spaces: 5, image: 'images/music.jpg' },
-    //   { subject: 'Music', location: 'New Zealand', price: 175, spaces: 5, image: 'images/music.jpg' },
-    //   { subject: 'Music', location: 'Switzerland', price: 280, spaces: 5, image: 'images/music.jpg' },
-    //   { subject: 'Music', location: 'Brisbane', price: 185, spaces: 5, image: 'images/music.jpg' },
-    //   { subject: 'Music', location: 'California', price: 290, spaces: 5, image: 'images/music.jpg' },
-    //   { subject: 'Music', location: 'Texas', price: 100, spaces: 5, image: 'images/music.jpg' },
-    // ],
     lessons: [],
     originalLessons: [],
     cart: [],
@@ -69,17 +57,20 @@ new Vue({
         alert('Invalid Name or Phone Number!');
       }
     },
-    searchLessons() {
-      const lowerCaseSearch = this.searchText.toLowerCase();
-      this.lessons = this.originalLessons.filter((lesson) => {
-        return (
-          lesson.subject.toLowerCase().includes(lowerCaseSearch) ||
-          lesson.location.toLowerCase().includes(lowerCaseSearch) ||
-          lesson.price.toString().includes(lowerCaseSearch) ||
-          lesson.spaces.toString().includes(lowerCaseSearch)
-        );
-      });
+    async searchLessons() {
+      try {
+        const query = encodeURIComponent(this.searchText); 
+        const response = await fetch(`http://localhost:3000/search/lessons?query=${query}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        this.lessons = data; 
+      } catch (error) {
+        console.error('Error searching lessons:', error);
+      }
     },
+    
     setFilter(filter) {
       this.activeFilter = filter;
       this.applyFilter();
