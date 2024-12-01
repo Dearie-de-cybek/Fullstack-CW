@@ -24,8 +24,6 @@
   <body id="top">
     <!-- Vue.js Root Container -->
     <div id="app">
-    
-
       <!-- Header -->
       <header class="header" data-header>
         <div class="container">
@@ -44,12 +42,12 @@
             >
               <ion-icon name="close-outline"></ion-icon>
             </button>
-  
+
             <!-- Logo in Navbar -->
             <a href="#" class="logo">
               <img src="images/logo.svg" alt="Logo" />
             </a>
-  
+
             <!-- Navbar Links -->
             <ul class="navbar-list">
               <li class="navbar-item">
@@ -59,7 +57,7 @@
                 <a href="#lessons" class="navbar-link">Lessons</a>
               </li>
             </ul>
-  
+
             <!-- Navbar Actions -->
             <ul class="nav-action-list">
               <li>
@@ -80,82 +78,123 @@
                 <button class="nav-action-btn">
                   <ion-icon name="bag-outline" aria-hidden="true"></ion-icon>
                   <span class="nav-action-text">Shopping Cart</span>
-                  <span v-if="cart.length > 0" class="cart-counter">{{ cart.length }}</span>
+                  <span v-if="cart.length > 0" class="cart-counter"
+                    >{{ cart.length }}</span
+                  >
                 </button>
               </li>
               <li>
-                <button @click="navigateToCheckout" class="cart-button" :disabled="cart.length === 0">Shopping Cart</button>
+                <button
+                  @click="navigateToCheckout"
+                  class="cart-button"
+                  :disabled="cart.length === 0"
+                >
+                  Shopping Cart
+                </button>
               </li>
             </ul>
           </nav>
         </div>
       </header>
-  
+
       <!-- Main Content -->
       <main>
         <article>
           <!-- Hero Section -->
-          <section class="section hero" style="background-image: url('images/hero4.jpg')">
+          <section
+            class="section hero"
+            style="background-image: url('images/hero4.jpg')"
+          >
             <div class="container">
               <h2 class="h1 hero-title">
                 Coursework <strong>Lessons for Sale</strong>
               </h2>
               <p class="hero-text">
-                Find Your Path to Knowledge: Purchase a Wide Range of Subjects and
-                Lessons Tailored for Your Growth - Anytime, Anywhere!
+                Find Your Path to Knowledge: Purchase a Wide Range of Subjects
+                and Lessons Tailored for Your Growth - Anytime, Anywhere!
               </p>
               <button class="btn btn-primary">
                 <span>Buy Now</span>
-                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                <ion-icon
+                  name="arrow-forward-outline"
+                  aria-hidden="true"
+                ></ion-icon>
               </button>
             </div>
           </section>
-  
+
           <!-- Lessons Section -->
           <section class="section product">
             <div class="container">
               <h2 class="h2 section-title">Lesson Collections</h2>
               <ul class="filter-list">
-                <li><button 
-                    class="filter-btn" 
-                    :class="{ active: activeFilter === 'all' }" 
-                    @click="setFilter('all')">All</button>
+                <li>
+                  <button
+                    class="filter-btn"
+                    :class="{ active: activeFilter === 'all' }"
+                    @click="setFilter('all')"
+                  >
+                    All
+                  </button>
                 </li>
-                <li><button 
-                    class="filter-btn" 
-                    :class="{ active: activeFilter === 'subject' }" 
-                    @click="setFilter('subject')">Subject</button>
+                <li>
+                  <button
+                    class="filter-btn"
+                    :class="{ active: activeFilter === 'subject' }"
+                    @click="setFilter('subject')"
+                  >
+                    Subject
+                  </button>
                 </li>
-                <li><button 
-                    class="filter-btn" 
-                    :class="{ active: activeFilter === 'location' }" 
-                    @click="setFilter('location')">Location</button>
+                <li>
+                  <button
+                    class="filter-btn"
+                    :class="{ active: activeFilter === 'location' }"
+                    @click="setFilter('location')"
+                  >
+                    Location
+                  </button>
                 </li>
-                <li><button 
-                    class="filter-btn" 
-                    :class="{ active: activeFilter === 'price' }" 
-                    @click="setFilter('price')">Price</button>
+                <li>
+                  <button
+                    class="filter-btn"
+                    :class="{ active: activeFilter === 'price' }"
+                    @click="setFilter('price')"
+                  >
+                    Price
+                  </button>
                 </li>
-                <li><button 
-                    class="filter-btn" 
-                    :class="{ active: activeFilter === 'spaces' }" 
-                    @click="setFilter('spaces')">Spaces</button>
+                <li>
+                  <button
+                    class="filter-btn"
+                    :class="{ active: activeFilter === 'spaces' }"
+                    @click="setFilter('spaces')"
+                  >
+                    Spaces
+                  </button>
                 </li>
-                <li><button 
-                    class="filter-btn" 
-                    :class="{ active: activeFilter === 'ascending' }" 
-                    @click="setSortOrder('ascending')">Ascending</button>
+                <li>
+                  <button
+                    class="filter-btn"
+                    :class="{ active: activeFilter === 'ascending' }"
+                    @click="setSortOrder('ascending')"
+                  >
+                    Ascending
+                  </button>
                 </li>
-                <li><button 
-                    class="filter-btn" 
-                    :class="{ active: activeFilter === 'descending' }" 
-                    @click="setSortOrder('descending')">Descending</button>
+                <li>
+                  <button
+                    class="filter-btn"
+                    :class="{ active: activeFilter === 'descending' }"
+                    @click="setSortOrder('descending')"
+                  >
+                    Descending
+                  </button>
                 </li>
               </ul>
-              
             </div>
           </section>
-  
+
           <section class="card">
             <div v-for="lesson in lessons" :key="lesson.subject" class="cards">
               <img :src="lesson.image" :alt="lesson.subject" />
@@ -163,23 +202,29 @@
               <p>Location: {{ lesson.location }}</p>
               <p>Price: ${{ lesson.price }}</p>
               <p>Spaces: {{ lesson.spaces }}</p>
-              <button class="cta" @click="addToCart(lesson)" :disabled="lesson.spaces <= 0">
+              <button
+                class="cta"
+                @click="addToCart(lesson)"
+                :disabled="lesson.spaces <= 0"
+              >
                 Add to Cart
               </button>
             </div>
           </section>
-
-         
-
         </article>
       </main>
     </div>
     <!-- End Vue.js Root Container -->
-  
+
     <!-- JavaScript and Other Scripts -->
     <script src="script.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
   </body>
-  
 </html>
