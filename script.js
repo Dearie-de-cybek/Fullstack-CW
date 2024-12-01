@@ -1,18 +1,19 @@
 new Vue({
   el: '#app',
   data: {
-    lessons: [
-      { subject: 'Maths', location: 'Hendon', price: 150, spaces: 5, image: 'images/maths.jpg' },
-      { subject: 'English', location: 'London', price: 55, spaces: 5, image: 'images/english.jpg' },
-      { subject: 'Biology', location: 'Mauritius', price: 260, spaces: 5, image: 'images/biology.jpg' },
-      { subject: 'Chemistry', location: 'Dubai', price: 165, spaces: 5, image: 'images/chemistry.jpg' },
-      { subject: 'Music', location: 'Alaska', price: 270, spaces: 5, image: 'images/music.jpg' },
-      { subject: 'Music', location: 'New Zealand', price: 175, spaces: 5, image: 'images/music.jpg' },
-      { subject: 'Music', location: 'Switzerland', price: 280, spaces: 5, image: 'images/music.jpg' },
-      { subject: 'Music', location: 'Brisbane', price: 185, spaces: 5, image: 'images/music.jpg' },
-      { subject: 'Music', location: 'California', price: 290, spaces: 5, image: 'images/music.jpg' },
-      { subject: 'Music', location: 'Texas', price: 100, spaces: 5, image: 'images/music.jpg' },
-    ],
+    // lessons: [
+    //   { subject: 'Maths', location: 'Hendon', price: 150, spaces: 5, image: 'images/maths.jpg' },
+    //   { subject: 'English', location: 'London', price: 55, spaces: 5, image: 'images/english.jpg' },
+    //   { subject: 'Biology', location: 'Mauritius', price: 260, spaces: 5, image: 'images/biology.jpg' },
+    //   { subject: 'Chemistry', location: 'Dubai', price: 165, spaces: 5, image: 'images/chemistry.jpg' },
+    //   { subject: 'Music', location: 'Alaska', price: 270, spaces: 5, image: 'images/music.jpg' },
+    //   { subject: 'Music', location: 'New Zealand', price: 175, spaces: 5, image: 'images/music.jpg' },
+    //   { subject: 'Music', location: 'Switzerland', price: 280, spaces: 5, image: 'images/music.jpg' },
+    //   { subject: 'Music', location: 'Brisbane', price: 185, spaces: 5, image: 'images/music.jpg' },
+    //   { subject: 'Music', location: 'California', price: 290, spaces: 5, image: 'images/music.jpg' },
+    //   { subject: 'Music', location: 'Texas', price: 100, spaces: 5, image: 'images/music.jpg' },
+    // ],
+    lessons: [],
     originalLessons: [],
     cart: [],
     showCart: false,
@@ -33,6 +34,16 @@ new Vue({
     },
   },
   methods: {
+    async fetchLessons() {
+      try {
+        const response = await fetch('http://localhost:3000/collections/lessons'); 
+        const data = await response.json();
+        this.lessons = data;
+        this.originalLessons = [...data];
+      } catch (error) {
+        console.error('Error fetching lessons:', error);
+      }
+    },
     addToCart(lesson) {
       if (lesson.spaces > 0) {
         this.cart.push(lesson);
@@ -106,6 +117,7 @@ new Vue({
     },
   },
   mounted() {
+    this.fetchLessons();
     this.originalLessons = [...this.lessons];
   },
 });
