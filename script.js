@@ -46,17 +46,7 @@ new Vue({
       localStorage.setItem('cart', JSON.stringify(this.cart));
       window.location.href = 'checkout.html';
     },
-    checkout() {
-      if (/^[a-zA-Z\s]+$/.test(this.form.name) && /^[0-9]+$/.test(this.form.phone)) {
-        alert('Order Confirmed!');
-        this.cart = [];
-        this.form.name = '';
-        this.form.phone = '';
-        this.showCart = false;
-      } else {
-        alert('Invalid Name or Phone Number!');
-      }
-    },
+    
     async searchLessons() {
       try {
         const query = encodeURIComponent(this.searchText); 

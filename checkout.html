@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout</title>
-    <link rel="stylesheet" href="css/cart.css">
-    
+    <link rel="stylesheet" href="css/cart.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,107 +13,108 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-</head>
-<body>
-    
+  </head>
+  <body>
+    <div id="checkout-app">
+      <h1>Checkout</h1>
+      <div v-if="cart.length > 0">
+        <ul>
+          <li v-for="(item, index) in cart" :key="index">
+            {{ item.subject }} - {{ item.location }} - ${{ item.price }}
+            <button @click="removeFromCart(index)">Remove</button>
+          </li>
+        </ul>
+        <p>Total Price: ${{ totalCartPrice }}</p>
+        <form @submit.prevent="confirmOrder">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            v-model="form.name"
+            required
+            pattern="[a-zA-Z\s]+"
+            title="Name must contain only letters and spaces"
+          />
 
-  
-        <div id="checkout-app">
-          <h1>Checkout</h1>
-          <div v-if="cart.length > 0">
-            <ul>
-              <li v-for="(item, index) in cart" :key="index">
-                {{ item.subject }} - {{ item.location }} - ${{ item.price }}
-                <button @click="removeFromCart(index)">Remove</button>
-              </li>
-            </ul>
-            <p>Total Price: ${{ totalCartPrice }}</p>
-            <form @submit.prevent="confirmOrder">
-              <label for="name">Name:</label>
-              <input type="text" v-model="form.name" required>
+          <label for="phone">Phone:</label>
+          <input
+            type="text"
+            id="phone"
+            v-model="form.phone"
+            required
+            pattern="[0-9]{8,}"
+            title="Phone must contain at least 8 digits"
+          />
+
+          <button type="submit">Confirm Order</button>
+        </form>
+      </div>
+      <div v-else>
+        <p>Your cart is empty!</p>
+        <a href="index.html">Back to Lessons</a>
+      </div>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#checkout-app",
+        data: {
+          cart: [],
+          form: {
+            name: "",
+            phone: "",
+          },
+        },
+        computed: {
+          totalCartPrice() {
+            return this.cart.reduce((total, item) => total + item.price, 0);
+          },
+        },
+        methods: {
+          removeFromCart(index) {
+            const lesson = this.cart.splice(index, 1)[0];
+            lesson.spaces++;
+            localStorage.setItem("cart", JSON.stringify(this.cart));
+          },
+          confirmOrder() {
+            const nameRegex = /^[a-zA-Z\s]+$/; 
+            const phoneRegex = /^[0-9]{8,}$/; 
+            if (!nameRegex.test(this.form.name)) {
+              alert("Invalid Name! Please use only letters and spaces.");
+              return;
+            }
+
+            if (!phoneRegex.test(this.form.phone)) {
+              alert("Invalid Phone Number! It must contain at least 8 digits.");
+              return;
+            }
+
       
-              <label for="phone">Phone:</label>
-              <input type="text" v-model="form.phone" required pattern="[0-9]+">
-      
-              <button type="submit">Confirm Order</button>
-            </form>
-          </div>
-          <div v-else>
-            <p>Your cart is empty!</p>
-            <a href="index.html">Back to Lessons</a>
-          </div>
-        </div>
-      
-        <script>
-          new Vue({
-            el: '#checkout-app',
-            data: {
-              cart: [],
-              form: {
-                name: '',
-                phone: '',
-              },
-            },
-            computed: {
-              totalCartPrice() {
-                return this.cart.reduce((total, item) => total + item.price, 0);
-              },
-            },
-            methods: {
-              removeFromCart(index) {
-                const lesson = this.cart.splice(index, 1)[0];
-                lesson.spaces++;
-                localStorage.setItem('cart', JSON.stringify(this.cart));
-              },
-              confirmOrder() {
-                if (/^[a-zA-Z\s]+$/.test(this.form.name) && /^[0-9]+$/.test(this.form.phone)) {
-                  alert('Order Confirmed!');
-                  this.cart = [];
-                  this.form.name = '';
-                  this.form.phone = '';
-                  localStorage.removeItem('cart');
-                  window.location.href = 'index.html';
-                } else {
-                  alert('Invalid Name or Phone Number!');
-                }
-              },
-            },
-            mounted() {
-              const storedCart = JSON.parse(localStorage.getItem('cart'));
-              if (storedCart) {
-                this.cart = storedCart;
-              }
-            },
-          });
-        </script>
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            alert("Order Confirmed!");
+            this.cart = [];
+            this.form.name = "";
+            this.form.phone = "";
+            localStorage.removeItem("cart"); 
+            window.location.href = "index.html"; 
+          },
+        },
+        mounted() {
+          const storedCart = JSON.parse(localStorage.getItem("cart"));
+          if (storedCart) {
+            this.cart = storedCart;
+          }
+        },
+      });
+    </script>
 
     <script src="script.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>
