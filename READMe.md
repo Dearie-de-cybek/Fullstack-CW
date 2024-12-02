@@ -22,8 +22,6 @@ This project is a Full Stack application for managing lessons and orders. The sy
 
 ## **Database Exports**
 Exported data in `.json` format for the `lessons` and `orders` collections can be found below:
-- [Lessons Collection Export](./lessons.json)
-- [Orders Collection Export](./orders.json)
 
 ---
 
