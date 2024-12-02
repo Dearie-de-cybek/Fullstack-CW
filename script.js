@@ -47,18 +47,16 @@ new Vue({
       window.location.href = 'checkout.html';
     },
     
-    async searchLessons() {
-      try {
-        const query = encodeURIComponent(this.searchText); 
-        const response = await fetch(`http://localhost:3000/search/lessons?query=${query}`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        this.lessons = data; 
-      } catch (error) {
-        console.error('Error searching lessons:', error);
-      }
+    searchLessons() {
+      const lowerCaseSearch = this.searchText.toLowerCase();
+      this.lessons = this.originalLessons.filter((lesson) => {
+        return (
+          lesson.subject.toLowerCase().includes(lowerCaseSearch) ||
+          lesson.location.toLowerCase().includes(lowerCaseSearch) ||
+          lesson.price.toString().includes(lowerCaseSearch) ||
+          lesson.spaces.toString().includes(lowerCaseSearch)
+        );
+      });
     },
     
     setFilter(filter) {
