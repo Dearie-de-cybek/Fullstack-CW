@@ -24,7 +24,7 @@ new Vue({
   methods: {
     async fetchLessons() {
       try {
-        const response = await fetch('http://localhost:3000/collections/lessons'); 
+        const response = await fetch('https://fullstack-cw-backend.onrender.com/collections/lessons'); 
         const data = await response.json();
         this.lessons = data;
         this.originalLessons = [...data];
